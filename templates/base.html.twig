@@ -1,8 +1,14 @@
 <!DOCTYPE html>
 <html>
-    <head>
+    <head lang="fr">
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
+            <title>TITRE </title>
+            <link rel="stylesheet" href="style.css">
+            <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+            <link rel="stylesheet" href="fontawesome-free/css/all.min.css">
+            <link rel="stylesheet" type="text/css" href="owlcarousel/assets/owl.carousel.min.css" />
+            <link rel="stylesheet" type="text/css" href="owlcarousel/assets/owl.theme.default.min.css" />
         {# Run `composer require symfony/webpack-encore-bundle`
            and uncomment the following Encore helpers to start using Symfony UX #}
         {% block stylesheets %}
@@ -14,6 +20,252 @@
         {% endblock %}
     </head>
     <body>
+     <nav class="navbar navbar-expand-lg navbar-light ">
+        <div class="container">
+            <a class="navbar-brand" href="#">LOGO</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('single')}}">single post et vignette layout</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">menu3</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">menu4</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Pays
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        {% for pays  in pays  %}
+                                <li><a class="dropdown-item" href="#">{{ pays.nom}}</a></li>
+                        {% endfor %}
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                    </li>
+                </ul>
+                <div class="d-flex">
+                    <a href="#" id="search" class="btn btn-green"> <i class="fas fa-search"></i> </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+        <!-- search banner  -->
+    <form action="">
+        <div class="banner-search-container active">
+            <div class="banner-search">
+                <div class="bannner-search-input">
+                    <input class="search" type="search" placeholder="Que cherchez-vous ">
+                    <button  type="submit" role="button"> <i class="fas fa-search  "></i> submit </button>
+                </div>
+    
+                <button  class=" btn text-light" id="fermer"><i class="fas fa-times fa-2x"></i></button>
+            </div>
+        </div>
+    </form>
+   
+    <!-- header  -->
+    <header>
+        <div class="mini-heading">La seule l'unique et vraie plateforme de diffusion des <br>cartes de menus des
+            restaurants
+            en afrique </div>
+        <h3 class="heading-sm">menuresto</h3>
+        <h2 class="heading">africa</h2>
+    </header>
         {% block body %}{% endblock %}
+            <footer>
+        <div class="banner-footer row d-flex justify-content-center ">
+            <div class=" col-md-2">
+            <h3 class="footer-titre text-uppercase">Go Africa online</h3>
+            <p class="footer-text">
+                Portail de l'internet Africainet annuaire pages jaunes des entreprises
+                <span>
+                    Ce site est 100% "made in Africa " et vous propose ses nombreuxx services en ligne
+                </span>
+            </p>
+        </div>
+        <div class="col-md-4">
+            <h3 class="footer-titre text-uppercase">Annuaire D'afrique </h3>
+            <div class="cover-flag d-flex flex-row justify-content-start ">
+                <div class="flag2">
+                    <img src="img/togo.png" alt="">
+                </div>
+                <div class="flag2">
+                    <img src="img/benninpng.png" alt="">
+                </div>
+                <div class="flag2">
+                    <img src="img/Ghanna.png" alt="">
+                </div>
+                <div class="flag2">
+                    <img src="img/burkina.png" alt="">
+                </div>
+                <div class="flag2">
+                    <img src="img/benninpng.png" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <h3 class="footer-titre text-uppercase">info & liens </h3>
+            <ul class="footer-list ">
+                <li>
+                    <a href="">Qui sommes nous ?</a>
+                </li>
+                <li>FAQ</li>
+                <li>Mentions légales</li>
+                <li>Politique de confidentialité</li>
+                <li>Presse</li>
+                <li>Liens partenaires </li>
+                <li>Contact</li>
+            </ul>
+            <h3 class="footer-titre text-uppercase">Nouveautés</h3>
+            <div>
+                <ul class="footer-list">
+                    <li> Nouvelles société</li>
+                    <li>Derniers commentaire</li>
+                    <li>Blog GoAfirca Online</li>
+                </ul>
+            </div>
+        </div>
+        </div>
+        <div class="banner-footer-link  d-flex  flex-row justify-content-center">
+            <span class=" mx-4">
+                <i class="fab fa-facebook fa-3x"></i>
+            </span>
+            <span class=" mx-4">
+                <i class="fab fa-twitter fa-3x"></i>
+            </span>
+            <span class=" mx-4">
+                <i class="fab fa-instagram fa-3x"></i>
+            </span>
+            <span class=" mx-4">
+                <i class="fab fa-linkedin-in fa-3x "></i>
+            </span>
+            <span class=" mx-4">
+                <i class="fab fa-youtube fa-3x"></i>
+            </span>
+        </div>
+    </footer>
     </body>
+    <script type="text/javascript" src="jquery.min.js"></script>
+<script type="text/javascript" src="owlcarousel/owl.carousel.min.js"></script>
+<script src="bootstrap/js/bootstrap.bundle.min.js ">
+</script>
+<!-- owl carousel config  https://owlcarousel2.github.io/OwlCarousel2/demos -->
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $('.banner-pays').owlCarousel({
+            loop: true,
+            dots: true,
+            nav: true,
+            center: true,
+            items: 8,
+            autoplay: true,
+            autoWidth: true,
+            autoplayTimeout: 8500,
+            smartSpeed: 450,
+            margin: 120,
+            responsive: {
+                0: {
+                    items: 1,
+                    margin: 80,
+                },
+                760: {
+                    items: 2
+                },
+                1000: {
+                    items: 4
+                }
+            }
+        });
+        $('.art').owlCarousel({
+            loop: false,
+            dots: true,
+            infinite: true,
+            nav: true,
+            center: false,
+            items: 3,
+            autoplay: true,
+            autoWidth: true,
+            autoplayTimeout: 8500,
+            smartSpeed: 450,
+            margin: 50,
+            responsive: {
+                0: {
+                    items: 1
+                },
+                600: {
+                    items: 3
+                },
+                1000: {
+                    items: 5
+                }
+            }
+        });
+        $('.assurance-banner').owlCarousel({
+            loop: false,
+            dots: true,
+            nav: true,
+            center: false,
+            items: 12,
+            autoplay: true,
+            autoWidth: true,
+            autoplayTimeout: 9500,
+            smartSpeed: 450,
+            margin: 50,
+            responsive: {
+                0: {
+                    items: 1
+                },
+                600: {
+                    items: 3
+                },
+                1000: {
+                    items: 5
+                }
+            }
+        });
+
+        $('.vign').owlCarousel({
+            loop: false,
+            dots: true,
+            nav: true,
+            center: false,
+            items: 4,
+            autoplay: true,
+            autoWidth: true,
+            autoplayTimeout: 8500,
+            smartSpeed: 450,
+            margin: 10,
+            responsive: {
+                0: {
+                    items: 1,
+                    margin: 30,
+
+                },
+                600: {
+                    items: 3
+                },
+                1000: {
+                    items: 5
+                }
+            }
+        });
+    });
+
+</script>
+<script src="app.js"></script>
+
 </html>

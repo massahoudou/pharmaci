@@ -1,0 +1,45 @@
+ <!-- banner  vignette -->
+  {% if Vsectionone is defined %}
+    <section class="container mt-3 mb-3  ">
+        <h2 class="  ">Pharmacie de garde </h2>
+        <div class="vign owl-carousel owl-theme">
+        {% for vignette in Vsectionone %}
+            <div class="item">
+            <a href="{{ vignette.flip  ? vignette.flip : ''  }}" style="text-decoration : none; text-transform: none ; color: black ; ">
+             <div class="card shadow-sm" style="width: 20rem;">
+                    <img src="img/vignette/L’ophtalmologie.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ vignette.titre }} </h5>
+                        <p class="card-text"> {{ vignette.description  | slice(0,20)  | raw  }}</p>
+                    </div>
+                </div>
+            </div>
+             </a>
+               
+        {% endfor %}
+        </div>
+    </section>
+  {% endif %}
+  
+    {% if Vsectiontwo is defined %}
+    <section class="container mt-3 mb-3  ">
+        <h2 class="  ">Pharmacie de garde </h2>
+        <div class="vign owl-carousel owl-theme">
+        {% for vignette in Vsectiontwo %}
+            <div class="item">
+            <a href="{{ vignette.flip  ? vignette.flip : ''  }}" style="text-decoration : none; text-transform: none ; color: black ; ">
+             <div class="card shadow-sm" style="width: 20rem;">
+                    <img src="img/vignette/L’ophtalmologie.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ vignette.titre }} </h5>
+                        <p class="card-text"> {{ vignette.description  | slice(0,20)  | raw  }}</p>
+                    </div>
+                </div>
+            </div>
+             </a>
+               
+        {% endfor %}
+        </div>
+    </section>
+  {% endif %}
+  
