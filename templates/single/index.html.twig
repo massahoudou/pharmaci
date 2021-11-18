@@ -4,22 +4,18 @@
 
 {% block body %}
  <!-- signle layout  -->
-    <div class="m-lg-5 m-3">
+ {% if article != null and article is defined  %}
+     <div class="m-lg-5 m-3">
         <div class="row">
             <div class="col-md-8 ">
-                <h3> Titre de l'article </h3>
-                <img src="img/Santé-Numérique-570x380.jpg" width="100%" class="img-fluid shadow-sm " alt="...">
+                <h3 class="text-capitalize"> {{ article.titre }} </h3>
+                <img src="{{ vich_uploader_asset(article,'fichier')}}" width="100%" class="img-fluid shadow-sm " alt="...">
                 <p class="mt-5">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam sapiente pariatur quae omnis quo nisi
-                    beatae? Nisi, ratione possimus. Odit rem ab cumque, iure perspiciatis magni dolorum. Quasi, facere
-                    ut?
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias, laboriosam accusamus natus deserunt
-                    mollitia fugiat commodi in explicabo ipsa deleniti facilis nam inventore eum delectus totam
-                    necessitatibus adipisci suscipit optio!
+                    {{ article.description | raw  }}
 
                 </p>
 
-                <span class="text-muted"> Publié le 12-12-2021 </span>
+                <span class="text-muted"> Publié le {{ article.misajour |date('d-m-Y')}} </span>
 
             </div>
             <!-- banner recent post   -->
@@ -27,70 +23,31 @@
                 <div class=" ">
                     <h4>Article récent</h4>
                     <div class="row ">
-                        <div class="col-md-12 mt-2">
-                            <a href="" class="text-dark text-decoration-none">
+                    {% if articles is defined and articles != null %}
+                    
+                              {% for article  in  articles  %}
+                           <div class="col-md-12 mt-2">
+                            <a href="{{ path('single', {titre: article.titre | replace({' ': '-'}) , pays: article.pays } )}}" class="text-dark text-decoration-none">
                                 <div class="row">
                                     <div class="col position-relative">
-                                        <img src="img/sante_1_0.jpg" alt="" class="img-thumbnail">
+                                        <img src="{{ vich_uploader_asset(article,'fichier')}}" alt="" class="img-thumbnail">
                                     </div>
                                     <div class="col-md-7">
-                                        <span class="text-success"> Titre de l'aticle</span>
+                                        <span class="text-success"> {{ article.titre }}</span>
                                         <div>
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, dolores ....
+                                            {{ article.description | raw }}
                                         </div>
-                                        <span class="text-muted"> 11-12-2021</span>
+                                        <small class="text-muted"> {{ article.misajour |date('d-m-Y')}}</small>
                                     </div>
                                 </div>
                             </a>
                         </div>
-                        <div class="col-md-12 mt-2">
-                            <a href="" class="text-dark text-decoration-none">
-                                <div class="row">
-                                    <div class="col position-relative">
-                                        <img src="img/sante_1_0.jpg" alt="" class="img-thumbnail">
-                                    </div>
-                                    <div class="col-md-7">
-                                        <span class="text-success "> Titre de l'aticle</span>
-                                        <div>
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, dolores ....
-                                        </div>
-                                        <span class="text-muted"> 11-12-2021</span>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-md-12 mt-2">
-                            <a href="" class="text-dark text-decoration-none">
-                                <div class="row">
-                                    <div class="col position-relative">
-                                        <img src="img/sante_1_0.jpg" alt="" class="img-thumbnail">
-                                    </div>
-                                    <div class="col-md-7">
-                                        <span class="text-success"> Titre de l'aticle</span>
-                                        <div>
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, dolores ....
-                                        </div>
-                                        <span class="text-muted"> 11-12-2021</span>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-md-12 mt-2">
-                            <a href="" class="text-dark text-decoration-none">
-                                <div class="row">
-                                    <div class="col position-relative">
-                                        <img src="img/sante_1_0.jpg" alt="" class="img-thumbnail">
-                                    </div>
-                                    <div class="col-md-7">
-                                        <span class="text-success"> Titre de l'aticle</span>
-                                        <div>
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, dolores ....
-                                        </div>
-                                        <span class="text-muted"> 11-12-2021</span>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
+                    {% endfor %}
+                    {% endif %}
+                    
+          
+                     
+                        
                       
                     </div>
                 </div><br>
@@ -124,7 +81,11 @@
         </div>
     </div>
 
-    <!-- article ralatif -->
+ 
+ {% endif %}
+ 
+
+    {# <!-- article ralatif -->
     <section class="container   mt-5 mb-5 ">
         <h4 class="">Article relatifs </h4>
         <div class=" art  owl-carousel owl-theme  ">
@@ -200,50 +161,35 @@
         <div class="text-center pt-3 justify-content-center">
             <a href="" class="btn btn-dark"> Voir tous les infos</a>
         </div>
-    </section>
+    </section> #}
     <!-- banner pub -->
-    <section class="container-fluid bg-default text-center d-flex  justify-content-center align-items-center p-5"
-        style="height: 22rem; background: #F8C9BA ;">
-        <h2>Banner pub</h2>
+    {% if pub1 is defined and  pub1 != null %}
+        {% for pub  in pub1 %}
+     <section class="container-fluid bg-default text-center d-flex overflow-hidden justify-content-center align-items-center p-5"
+        style="height: 22rem; ">
+        <img src="{{asset('images/pubs/'~ pub.image)}}" class="w-100" alt="">
     </section>
-    <section class="container-fluid pt-5">
-        <h4 class="text-center">Assurance maladies : Togo </h4>
-        <div class="assurance-banner pt-2 owl-carousel owl-theme">
-            <div class="item">
-                <div class="cover"></div>
-            </div>
-            <div class="item">
-                <div class="cover"></div>
-            </div>
-            <div class="item">
-                <div class="cover"></div>
-            </div>
-            <div class="item">
-                <div class="cover"></div>
-            </div>
-            <div class="item">
-                <div class="cover"></div>
-            </div>
-            <div class="item">
-                <div class="cover"></div>
-            </div>
-            <div class="item">
-                <div class="cover"></div>
-            </div>
-            <div class="item">
-                <div class="cover"></div>
-            </div>
-            <div class="item">
-                <div class="cover"></div>
-            </div>
-            <div class="item">
-                <div class="cover"></div>
-            </div>
-            <div class="item">
-                <div class="cover"></div>
-            </div>
+        {% endfor %}
+    {% endif %}
 
+     {% if  miniatures is  defined and  miniatures != null  %}
+
+            <section class="container-fluid pt-5">
+        <h4 class="text-center">Assurance maladies : Togo </h4>
+        <div class="assurance-banner p-2 owl-carousel owl-theme">
+        {% for mini in miniatures %}
+            <div class="item">
+                <div class="cover">
+                <a href="https://{{ mini.flip }}" target="_blank"  >
+                    <img src="{{asset('/images/miniatures/'~ mini.image )}}" class="thumb-nail card-top-img ">
+                    </a>
+                </div>
+            </div>
+        {% endfor %}
+        
         </div>
 
     </section>
+
+    {% endif %}
 {% endblock %}

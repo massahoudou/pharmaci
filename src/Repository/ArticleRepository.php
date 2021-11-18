@@ -18,14 +18,26 @@ class ArticleRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Article::class);
     }
-    public function findsection($value)
+    public function findsection($section, $pays)
     {
         return $this->createQueryBuilder('a')
-            ->andWhere('a.position = :val')
-            ->setParameter('val', $value)
+            ->andWhere('a.position = :sec')
+            ->setParameter('sec', $section)
+            ->join('a.pays','p')
+            ->andWhere('p.nom = :pa')
+            ->setParameter('pa', $pays)
             ->orderBy('a.id', 'ASC')
             ->getQuery()
             ->getResult();
+    }
+    public function findRecent()
+    {
+        return $this->createQueryBuilder('a')
+            ->orderBy('a.id', 'DESC')
+            ->setMaxResults(4)
+            ->getQuery()
+            ->getResult()
+        ;
     }
 
     // /**

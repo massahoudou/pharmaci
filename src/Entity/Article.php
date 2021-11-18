@@ -5,9 +5,11 @@ namespace App\Entity;
 use App\Repository\ArticleRepository;
 use Doctrine\ORM\Mapping as ORM;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
-
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\HttpFoundation\File\File;
 /**
  * @ORM\Entity(repositoryClass=ArticleRepository::class)
+ *  @Vich\Uploadable
  */
 class Article 
 {
@@ -38,10 +40,16 @@ class Article
      */
     private $creation;
 
+     /**
+      *  @Vich\UploadableField(mapping="articles", fileNameProperty="image", size="")
+     * @var File|null 
+     */
+    private $fichier;
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $image;
+
 
     /**
      * @ORM\Column(type="integer")
@@ -147,6 +155,20 @@ class Article
         $this->pays = $pays;
 
         return $this;
+    }
+    public function setFichier(?File $fichier = null): void
+    {
+        $this->fichier = $fichier;
+
+        if (null !== $fichier) {
+
+            $this->misajour = new \DateTimeImmutable();
+        }
+    }
+
+    public function getFichier(): ?File
+    {
+        return $this->fichier;
     }
 
 

@@ -6,9 +6,12 @@ use App\Repository\PaysRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\HttpFoundation\File\File;
 
 /**
  * @ORM\Entity(repositoryClass=PaysRepository::class)
+ *  @Vich\Uploadable
  */
 class Pays
 {
@@ -25,18 +28,47 @@ class Pays
     private $nom;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     *  @Vich\UploadableField(mapping="pays", fileNameProperty="image", size="")
+     * @var File|null 
      */
-    private $flag;
+    private $fichier;
+    /**
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $image;
 
     /**
      * @ORM\OneToMany(targetEntity=Article::class, mappedBy="pays")
      */
     private $articles;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Miniature::class, mappedBy="pays")
+     */
+    private $miniatures;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Vignette::class, mappedBy="Pays")
+     */
+    private $vignettes;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $misajour;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Pub::class, mappedBy="pays")
+     */
+    private $pubs;
+
     public function __construct()
     {
         $this->articles = new ArrayCollection();
+        $this->miniatures = new ArrayCollection();
+        $this->vignettes = new ArrayCollection();
+        $this->pubs = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -56,14 +88,15 @@ class Pays
         return $this;
     }
 
-    public function getFlag(): ?string
+ 
+    public function getImage(): ?string
     {
-        return $this->flag;
+        return $this->image;
     }
 
-    public function setFlag(string $flag): self
+    public function setImage(?string $image): self
     {
-        $this->flag = $flag;
+        $this->image = $image;
 
         return $this;
     }
@@ -100,5 +133,122 @@ class Pays
     public function __toString()
     {
       return   $this->nom;
+    }
+
+    /**
+     * @return Collection|Miniature[]
+     */
+    public function getMiniatures(): Collection
+    {
+        return $this->miniatures;
+    }
+
+    public function addMiniature(Miniature $miniature): self
+    {
+        if (!$this->miniatures->contains($miniature)) {
+            $this->miniatures[] = $miniature;
+            $miniature->setPays($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMiniature(Miniature $miniature): self
+    {
+        if ($this->miniatures->removeElement($miniature)) {
+            // set the owning side to null (unless already changed)
+            if ($miniature->getPays() === $this) {
+                $miniature->setPays(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Vignette[]
+     */
+    public function getVignettes(): Collection
+    {
+        return $this->vignettes;
+    }
+
+    public function addVignette(Vignette $vignette): self
+    {
+        if (!$this->vignettes->contains($vignette)) {
+            $this->vignettes[] = $vignette;
+            $vignette->setPays($this);
+        }
+
+        return $this;
+    }
+
+    public function removeVignette(Vignette $vignette): self
+    {
+        if ($this->vignettes->removeElement($vignette)) {
+            // set the owning side to null (unless already changed)
+            if ($vignette->getPays() === $this) {
+                $vignette->setPays(null);
+            }
+        }
+
+        return $this;
+    }
+    public function setFichier(?File $fichier = null): void
+    {
+        $this->fichier = $fichier;
+
+        if (null !== $fichier) {
+
+            $this->misajour = new \DateTimeImmutable();
+        }
+    }
+
+
+    public function getFichier(): ?File
+    {
+        return $this->fichier;
+    }
+
+    public function getMisajour(): ?\DateTimeInterface
+    {
+        return $this->misajour;
+    }
+
+    public function setMisajour(?\DateTimeInterface $misajour): self
+    {
+        $this->misajour = $misajour;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Pub[]
+     */
+    public function getPubs(): Collection
+    {
+        return $this->pubs;
+    }
+
+    public function addPub(Pub $pub): self
+    {
+        if (!$this->pubs->contains($pub)) {
+            $this->pubs[] = $pub;
+            $pub->setPays($this);
+        }
+
+        return $this;
+    }
+
+    public function removePub(Pub $pub): self
+    {
+        if ($this->pubs->removeElement($pub)) {
+            // set the owning side to null (unless already changed)
+            if ($pub->getPays() === $this) {
+                $pub->setPays(null);
+            }
+        }
+
+        return $this;
     }
 }

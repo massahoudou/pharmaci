@@ -21,118 +21,27 @@
     <section class="container position-relative">
         <h4 class="">Naviguer dans un pays </h4>
         <div class="banner-pays owl-carousel owl-theme ">
-            <div class="item">
-                <div class="banner-pays-flag">
+        {% for pays in pays %}
+             <div class="item">
+             <a class="text-decoration-none  text-dark " href="{{path('pays',{pays: pays.nom  })}}">
+             <div class="banner-pays-flag">
                     <div class="flag">
-                        <img src="img/togo.png" alt="">
+                        <img src="{{ vich_uploader_asset(pays, 'fichier' )}}" alt="{{ pays.nom }})">
                     </div>
                     <span>
-                        togo
+                       {{pays.nom }}
                     </span>
                 </div>
+             </a>
+                
             </div>
-            <div class="item">
-                <div class="banner-pays-flag">
-                    <div class="flag">
-                        <img src="img/benninpng.png" alt="">
-                    </div>
-                    <span>Benin</span>
-                </div>
-            </div>
-            <div class="item">
-                <div class="banner-pays-flag">
-                    <div class="flag">
-                        <img src="img/Ghanna.png" alt="">
-                    </div>
-                    <span>ghanna</span>
-                </div>
-            </div>
-
-            <div class="item">
-                <div class="banner-pays-flag">
-                    <div class="flag">
-                        <img src="img/burkina.png" alt="">
-                    </div>
-                    <span>Burkina faso</span>
-
-                </div>
-            </div>
-            <div class="item">
-                <div class="banner-pays-flag">
-                    <div class="flag">
-                        <img src="img/togo.png" alt="">
-                    </div>
-                    <span>
-                        togo
-                    </span>
-                </div>
-            </div>
-            <div class="item">
-                <div class="banner-pays-flag">
-                    <div class="flag">
-                        <img src="img/benninpng.png" alt="">
-                    </div>
-                    <span>Benin</span>
-                </div>
-            </div>
-            <div class="item">
-                <div class="banner-pays-flag">
-                    <div class="flag">
-                        <img src="img/Ghanna.png" alt="">
-                    </div>
-                    <span>ghanna</span>
-                </div>
-            </div>
-            <div class="item">
-                <div class="banner-pays-flag">
-                    <div class="flag">
-                        <img src="img/burkina.png" alt="">
-                    </div>
-                    <span>Burkina faso</span>
-                </div>
-            </div>
-            <div class="item">
-                <div class="banner-pays-flag">
-                    <div class="flag">
-                        <img src="img/togo.png" alt="">
-                    </div>
-                    <span>
-                        togo
-                    </span>
-                </div>
-            </div>
-            <div class="item">
-                <div class="banner-pays-flag">
-                    <div class="flag">
-                        <img src="img/benninpng.png" alt="">
-                    </div>
-                    <span>Benin</span>
-                </div>
-            </div>
-            <div class="item">
-                <div class="banner-pays-flag">
-                    <div class="flag">
-                        <img src="img/Ghanna.png" alt="">
-                    </div>
-                    <span>ghanna</span>
-                </div>
-            </div>
-            <div class="item">
-                <div class="banner-pays-flag">
-                    <div class="flag">
-                        <img src="img/burkina.png" alt="">
-                    </div>
-                    <span>Burkina faso</span>
-
-                </div>
-            </div>
-
-
+        {% endfor %}
+           
         </div>
     </section>
     <!-- banner  article  -->
     {% include "home/article.html.twig" %}
-    <!-- banner  article vidéos -->
+    {# <!-- banner  article vidéos -->
     <section class="container  mt-5 mb-5 ">
         <h4 class="">Vidéo de conseils pratiques santé </h4>
         <div class="art owl-theme  owl-carousel  ">
@@ -206,58 +115,50 @@
         <div class="text-center  pt-3 justify-content-center">
             <a href="" class="btn rounded-0 btn-dark"> Voir tous les vidéos</a>
         </div>
+    </section> #}
+    <!-- banner pub -->
+    {% if pub1 is defined and  pub1 != null %}
+        {% for pub  in pub1 %}
+     <section class="container-fluid bg-default text-center d-flex overflow-hidden justify-content-center align-items-center p-5"
+        style="height: 22rem;  ">
+        <img src="{{asset('images/pubs/'~ pub.image)}}" class="w-100"  alt="">
     </section>
-    <!-- banner pub  -->
-    <section class="container-fluid bg-default text-center d-flex  justify-content-center align-items-center p-5"
-        style="height: 22rem; background: #F8C9BA ;">
-        <h2>Banner pub</h2>
-    </section>
+        {% endfor %}
+    {% endif %}
    {% include "home/vignette.html.twig" %}
     <!-- banner pub -->
-    <section class="container-fluid bg-default text-center d-flex  justify-content-center align-items-center p-5"
-        style="height: 22rem; background: #F8C9BA ;">
-        <h2>Banner pub</h2>
+ 
+    {% if pub2 is defined and  pub2 != null %}
+        {% for pub  in pub2 %}
+     <section class="container-fluid bg-default text-center d-flex  overflow-hidden  justify-content-center align-items-center p-5"
+        style="height: 22rem; ">
+        <img src="{{asset('images/pubs/'~ pub.image)}}" class="w-100" alt="">
     </section>
-    <section class="container-fluid pt-5">
-        <h4 class="text-center">Assurance maladies : Togo </h4>
-        <div class="assurance-banner pt-2 owl-carousel owl-theme">
-            <div class="item">
-                <div class="cover"></div>
-            </div>
-            <div class="item">
-                <div class="cover"></div>
-            </div>
-            <div class="item">
-                <div class="cover"></div>
-            </div>
-            <div class="item">
-                <div class="cover"></div>
-            </div>
-            <div class="item">
-                <div class="cover"></div>
-            </div>
-            <div class="item">
-                <div class="cover"></div>
-            </div>
-            <div class="item">
-                <div class="cover"></div>
-            </div>
-            <div class="item">
-                <div class="cover"></div>
-            </div>
-            <div class="item">
-                <div class="cover"></div>
-            </div>
-            <div class="item">
-                <div class="cover"></div>
-            </div>
-            <div class="item">
-                <div class="cover"></div>
-            </div>
+        {% endfor %}
+    {% endif %}
+    
+    {% if miniatures is defined and  miniatures != null  %}
 
+            <section class="container-fluid pt-5">
+        <h4 class="text-center">Assurance maladies : Togo </h4>
+        <div class="assurance-banner p-2 owl-carousel owl-theme">
+        {% for mini in miniatures %}
+            <div class="item">
+                <div class="cover">
+                   <a href="https://{{ mini.flip }}" target="_blank">
+                    <img src="{{asset('/images/miniatures/'~ mini.image )}}" class="thumb-nail card-top-img ">
+                    </a>
+                </div>
+            </div>
+        {% endfor %}
+        
         </div>
 
     </section>
+
+    {% endif %}
+    
+
     <!-- footer  -->
 
 {% endblock %}

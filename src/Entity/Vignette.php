@@ -4,9 +4,11 @@ namespace App\Entity;
 
 use App\Repository\VignetteRepository;
 use Doctrine\ORM\Mapping as ORM;
-
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\HttpFoundation\File\File;
 /**
  * @ORM\Entity(repositoryClass=VignetteRepository::class)
+ * @vich\Uploadable
  */
 class Vignette
 {
@@ -33,6 +35,11 @@ class Vignette
     private $creation;
 
     /**
+     *  @Vich\UploadableField(mapping="vignettes", fileNameProperty="image", size="")
+     * @var File|null 
+     */
+    private $fichier;
+    /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $image;
@@ -46,6 +53,17 @@ class Vignette
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $flip;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $misajour;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Pays::class, inversedBy="vignettes")
+     */
+    private $pays;
+    
     public function __construct()
     {
         $this->creation = new \DateTime();
@@ -124,6 +142,44 @@ class Vignette
     public function setFlip(?string $flip): self
     {
         $this->flip = $flip;
+
+        return $this;
+    }
+
+    public function getMisajour(): ?\DateTimeInterface
+    {
+        return $this->misajour;
+    }
+
+    public function setMisajour(?\DateTimeInterface $misajour): self
+    {
+        $this->misajour = $misajour;
+
+        return $this;
+    }
+    public function setFichier(?File $fichier = null): void
+    {
+        $this->fichier = $fichier;
+
+        if (null !== $fichier) {
+
+            $this->misajour = new \DateTimeImmutable();
+        }
+    }
+
+    public function getFichier(): ?File
+    {
+        return $this->fichier;
+    }
+
+    public function getPays(): ?Pays
+    {
+        return $this->pays;
+    }
+
+    public function setPays(?Pays $pays): self
+    {
+        $this->pays = $pays;
 
         return $this;
     }

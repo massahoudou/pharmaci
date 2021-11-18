@@ -4,6 +4,8 @@ namespace App\Controller\Admin;
 
 use App\Entity\Article;
 use App\Entity\Pays;
+Use App\Entity\Pub;
+Use App\Entity\Miniature;
 use App\Entity\Vignette;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -24,7 +26,7 @@ class DashboardController extends AbstractDashboardController
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
-            ->setTitle('Azo Et Symfony');
+            ->setTitle('Administration');
     }
 
     public function configureMenuItems(): iterable
@@ -33,6 +35,8 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Articles', 'fas fa-folder', Article::class);
         yield MenuItem::linkToCrud('Vignettes', 'fas fa-folder', Vignette::class);
         yield MenuItem::linkToCrud('Pays','fas fa-folder', Pays::class);
+        yield MenuItem::linkToCrud('Publicités  ','fas fa-folder', Pub::class);
+        yield MenuItem::linkToCrud('Minatures','fas fa-folder', Miniature::class);
         yield MenuItem::linkToCrud('utlisateurs', 'fas fa-folder', Vignette::class);
     }
 }

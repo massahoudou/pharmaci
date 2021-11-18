@@ -19,11 +19,14 @@ class VignetteRepository extends ServiceEntityRepository
         parent::__construct($registry, Vignette::class);
     }
 
-    public function findsection($value)
+    public function findsection($section, $pays )
     {
         return $this->createQueryBuilder('v')
-            ->andWhere('v.position = :val')
-            ->setParameter('val', $value)
+            ->andWhere('v.position = :sec')
+            ->setParameter('sec', $section)
+            ->join('v.pays','p')
+            ->andWhere('p.nom = :pa')
+            ->setParameter('pa', $pays)
             ->orderBy('v.id', 'ASC')
             ->getQuery()
             ->getResult()

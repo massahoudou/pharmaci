@@ -1,17 +1,18 @@
-{% if Asectionone is defined %}
+{% if Asectionone is defined and  Asectionone != null %}
 <section class="container   mt-5 mb-5 ">
         <h4 class="">Informations pratiques assurance maladie</h4>
         <div class=" art  owl-carousel owl-theme  ">
         {% for article in Asectionone %}
             <div class="item">
                 <div class="card shadow-sm" style="width: 25rem;">
-                    <img src="img/sante_1_0.jpg" class="card-img-top"
+                    <img src="{{vich_uploader_asset(article, 'fichier')}}" class="card-img-top"
                         alt="...">
                     <div class="card-body">
                         <h5 class="card-title">{{ article.titre }}</h5>
                         <p class="card-text">
                          {{  article.description | slice(0,20 )  | raw }}</p>
-                            <a href="" class="btn btn-success">lire plus</a>
+                            
+                            <a href="{{ path('single', {titre: article.titre | replace({' ': '-'}), pays: article.pays} )}}" class="btn btn-success">lire plus</a>
                     </div>
                 </div>
             </div>
@@ -23,20 +24,21 @@
         </div>
     </section>
 {% endif %}
-{% if Asectiontwo is defined %}
+
+{% if Asectiontwo is defined and Asectiontwo != null %}
 <section class="container   mt-5 mb-5 ">
         <h4 class="">Informations pratiques assurance maladie</h4>
         <div class=" art  owl-carousel owl-theme  ">
         {% for article in Asectiontwo %}
             <div class="item">
                 <div class="card shadow-sm" style="width: 25rem;">
-                    <img src="img/sante_1_0.jpg" class="card-img-top"
+                    <img src="{{vich_uploader_asset(article, 'fichier')}}" class="card-img-top"
                         alt="...">
                     <div class="card-body">
                         <h5 class="card-title">{{ article.titre }}</h5>
                         <p class="card-text">
                          {{  article.description | slice(0,20 )  | raw }}</p>
-                            <a href="" class="btn btn-success">lire plus</a>
+                            <a href="{{ path('single', {titre: article.titre | replace({' ': '-'}) , pays: article.pays } )}}" class="btn btn-success">lire plus</a>
                     </div>
                 </div>
             </div>
@@ -48,3 +50,57 @@
         </div>
     </section>
 {% endif %}
+
+{% if Asectionthree is defined and Asectionthree != null %}
+<section class="container   mt-5 mb-5 ">
+        <h4 class="">Informations pratiques assurance maladie</h4>
+        <div class=" art  owl-carousel owl-theme  ">
+        {% for article in Asectionthree %}
+            <div class="item">
+                <div class="card shadow-sm" style="width: 25rem;">
+                    <img src="{{vich_uploader_asset(article, 'fichier')}}" class="card-img-top"
+                        alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ article.titre }}</h5>
+                        <p class="card-text">
+                         {{  article.description | slice(0,20 )  | raw }}</p>
+                            <a href="{{ path('single', {titre: article.titre | replace({' ': '-'}) ,pays: article.pays } )}}" class="btn btn-success">lire plus</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+            
+        </div>
+        <div class="text-center pt-3 justify-content-center">
+            <a href="" class="btn btn-dark"> Voir tous les infos</a>
+        </div>
+    </section>
+{% endif %}
+
+{% if Asectionfour is defined and Asectionfour != null %}
+<section class="container   mt-5 mb-5 ">
+        <h4 class="">Informations pratiques assurance maladie</h4>
+        <div class=" art  owl-carousel owl-theme  ">
+        {% for article in Asectionfour %}
+            <div class="item">
+                <div class="card shadow-sm" style="width: 25rem;">
+                    <img src="{{vich_uploader_asset(article, 'fichier')}}" class="card-img-top"
+                        alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ article.titre }}</h5>
+                        <p class="card-text">
+                         {{  article.description | slice(0,20 )  | raw }}</p>
+                            <a href="{{ path('single', {titre: article.titre | replace({' ': '-'}) ,pays: article.pays } )}}" class="btn btn-success">lire plus</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+            
+        </div>
+        <div class="text-center pt-3 justify-content-center">
+            <a href="" class="btn btn-dark"> Voir tous les infos</a>
+        </div>
+    </section>
+{% endif %}
+
+
