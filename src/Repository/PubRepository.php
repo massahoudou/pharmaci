@@ -27,7 +27,6 @@ class PubRepository extends ServiceEntityRepository
             ->andWhere('py.nom = :pa')
             ->setParameter('pa', $pays)
             ->orderBy('p.id', 'dESC')
-            ->setMaxResults(1)
             ->getQuery()
             ->getResult()
         ;

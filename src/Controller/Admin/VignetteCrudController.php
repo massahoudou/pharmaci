@@ -35,14 +35,10 @@ class VignetteCrudController extends AbstractCrudController
             $field =   [
                   
             TextField::new('titre','titre de la vignette'), 
+            AssociationField::new('categorie','Catégories de la vignette')->setFormTypeOptions([]),
             TextField::new('flip', 'flip de la vignette'),
             TextEditorField::new('description','Description de la vignette'),
-            ChoiceField::new('position', 'Section ')->setChoices(fn () => [
-                'section 1' => 1,
-                'section 2' => 2,
-                'section 3' => 3,
-                'section 4' => 4,
-            ]),
+    
                 AssociationField::new('pays')
                     ->setFormTypeOptions([])
                    

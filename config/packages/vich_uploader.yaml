@@ -7,9 +7,9 @@ vich_uploader:
             upload_destination: '%kernel.project_dir%/public/images/articles'
             namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
 
-        miniatures:
+        Conseils:
             uri_prefix: /images/minatures
-            upload_destination: '%kernel.project_dir%/public/images/miniatures'
+            upload_destination: '%kernel.project_dir%/public/images/conseils'
             namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
         
         pubs:

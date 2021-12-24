@@ -8,12 +8,13 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+
 use Vich\UploaderBundle\Form\Type\VichImageType;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 
 class ArticleCrudController extends AbstractCrudController
 {
@@ -39,17 +40,12 @@ class ArticleCrudController extends AbstractCrudController
 
             $field =   [
                 TextField::new('titre', 'titre de l\'article'),
+               
                 TextEditorField::new('description', 'Description de l\'article'),
-                ChoiceField::new('position', 'Section ')->setChoices(fn () => [
-                    'section 1' => 1,
-                    'section 2' => 2,
-                    'section 3' => 3,
-                    'section 4' => 4,
-                ]),
                 AssociationField::new('pays')
                     ->setFormTypeOptions([
                        
-                    ])
+                    ]),
                    
 
             ];

@@ -23,7 +23,7 @@ class ArticleRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('a')
             ->andWhere('a.position = :sec')
             ->setParameter('sec', $section)
-            ->join('a.pays','p')
+            ->join('a.pays', 'p')
             ->andWhere('p.nom = :pa')
             ->setParameter('pa', $pays)
             ->orderBy('a.id', 'ASC')
@@ -34,11 +34,29 @@ class ArticleRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('a')
             ->orderBy('a.id', 'DESC')
-            ->setMaxResults(4)
+            ->setMaxResults(10)
             ->getQuery()
-            ->getResult()
+            ->getResult();
+    }
+    public function findRandom()
+    {
+        return $this->createQueryBuilder('a')
+            ->getQuery()
+            ->getResult();
+    }
+    public function findPaysArticle( $pays, $titre )
+    {
+        return $this->createQueryBuilder('a')
+            ->join('a.pays','p')
+            ->andWhere('a.titre = :titre')
+            ->andWhere('p.nom = :pa')
+            ->setParameter('pa', $pays)
+            ->setParameter('titre',$titre)
+            ->getQuery()
+            ->getOneOrNullResult() 
         ;
     }
+
 
     // /**
     //  * @return Article[] Returns an array of Article objects

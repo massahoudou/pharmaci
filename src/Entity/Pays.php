@@ -44,9 +44,9 @@ class Pays
     private $articles;
 
     /**
-     * @ORM\OneToMany(targetEntity=Miniature::class, mappedBy="pays")
+     * @ORM\OneToMany(targetEntity=Conseil::class, mappedBy="pays")
      */
-    private $miniatures;
+    private $Conseils;
 
     /**
      * @ORM\OneToMany(targetEntity=Vignette::class, mappedBy="Pays")
@@ -66,7 +66,7 @@ class Pays
     public function __construct()
     {
         $this->articles = new ArrayCollection();
-        $this->miniatures = new ArrayCollection();
+        $this->Conseils = new ArrayCollection();
         $this->vignettes = new ArrayCollection();
         $this->pubs = new ArrayCollection();
     }
@@ -136,29 +136,29 @@ class Pays
     }
 
     /**
-     * @return Collection|Miniature[]
+     * @return Collection|Conseil[]
      */
-    public function getMiniatures(): Collection
+    public function getConseils(): Collection
     {
-        return $this->miniatures;
+        return $this->Conseils;
     }
 
-    public function addMiniature(Miniature $miniature): self
+    public function addConseil(Conseil $Conseil): self
     {
-        if (!$this->miniatures->contains($miniature)) {
-            $this->miniatures[] = $miniature;
-            $miniature->setPays($this);
+        if (!$this->Conseils->contains($Conseil)) {
+            $this->Conseils[] = $Conseil;
+            $Conseil->setPays($this);
         }
 
         return $this;
     }
 
-    public function removeMiniature(Miniature $miniature): self
+    public function removeConseil(Conseil $Conseil): self
     {
-        if ($this->miniatures->removeElement($miniature)) {
+        if ($this->Conseils->removeElement($Conseil)) {
             // set the owning side to null (unless already changed)
-            if ($miniature->getPays() === $this) {
-                $miniature->setPays(null);
+            if ($Conseil->getPays() === $this) {
+                $Conseil->setPays(null);
             }
         }
 

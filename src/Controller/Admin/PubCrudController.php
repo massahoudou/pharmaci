@@ -12,6 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\FileType;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 
 class PubCrudController extends AbstractCrudController
 {
@@ -30,19 +31,29 @@ class PubCrudController extends AbstractCrudController
                 ->setBasePath('/images/pubs/')
                 ->setFormType(VichImageType::class);
 
+            $localisation = TextareaField::new('localisation','Localisation de l\'annonceur');
+
             $field =   [
 
                 TextField::new('titre','Titre de la publicité '),
                 ChoiceField::new('position', 'Section ')->setChoices(fn () => [
+                    'Carousel' => 0,
                     'section 1' => 1,
                     'section 2' => 2,
                     'section 3' => 3,
                     'section 4' => 4,
+                    'section 5' => 5,
+                    'section 6' => 6,
                 ]),
+                TextField::new('adresse','Adresse de l\'annonceur '),
+                TextField::new('site','site de l\'annonceur'),
+                IntegerField::new('telephone1', 'Telephone de lannonceur '),
+                IntegerField::new('telephone2','telephone 2 '),
                 AssociationField::new('pays')
                     ->setFormTypeOptions([
                        
-                    ])
+                    ]),
+              
                    
 
             ];
@@ -54,8 +65,10 @@ class PubCrudController extends AbstractCrudController
             }
             else
             {
-                $field[] =  $fichier;
-            }
+                $field[] = $localisation ;
+                $field[] =  $fichier ;
+                
+             }
 
             return $field ;
       

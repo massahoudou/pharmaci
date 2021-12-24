@@ -44,10 +44,6 @@ class Vignette
      */
     private $image;
 
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $position;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -63,6 +59,11 @@ class Vignette
      * @ORM\ManyToOne(targetEntity=Pays::class, inversedBy="vignettes")
      */
     private $pays;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="vignettes")
+     */
+    private $categorie;
     
     public function __construct()
     {
@@ -122,17 +123,6 @@ class Vignette
         return $this;
     }
 
-    public function getPosition(): ?int
-    {
-        return $this->position;
-    }
-
-    public function setPosition(int $position): self
-    {
-        $this->position = $position;
-
-        return $this;
-    }
 
     public function getFlip(): ?string
     {
@@ -180,6 +170,18 @@ class Vignette
     public function setPays(?Pays $pays): self
     {
         $this->pays = $pays;
+
+        return $this;
+    }
+
+    public function getcategorie(): ?Category
+    {
+        return $this->categorie;
+    }
+
+    public function setCategorie(?Category $categorie): self
+    {
+        $this->categorie = $categorie;
 
         return $this;
     }

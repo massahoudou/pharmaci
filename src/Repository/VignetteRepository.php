@@ -33,22 +33,35 @@ class VignetteRepository extends ServiceEntityRepository
         ;
     }
 
-    // /**
-    //  * @return Vignette[] Returns an array of Vignette objects
-    //  */
-    /*
-    public function findByExampleField($value)
+     /**
+    * @return Vignette[] Returns an array of Vignette objects
+    */
+    
+    public function findByCategories($value)
     {
         return $this->createQueryBuilder('v')
-            ->andWhere('v.exampleField = :val')
+            ->join('v.categorie','ca')
+            ->andWhere('ca.titre = :val ')
             ->setParameter('val', $value)
-            ->orderBy('v.id', 'ASC')
-            ->setMaxResults(10)
+            ->orderBy('v.id', 'DESC')
             ->getQuery()
             ->getResult()
         ;
     }
-    */
+
+public function findPaysvignette( $pays, $titre )
+{
+    return $this->createQueryBuilder('m')
+        ->join('m.pays','p')
+        ->andWhere('m.titre = :titre')
+        ->andWhere('p.nom = :pa')
+        ->setParameter('pa', $pays)
+        ->setParameter('titre',$titre)
+        ->getQuery()
+        ->getOneOrNullResult() 
+    ;
+}
+    
 
     /*
     public function findOneBySomeField($value): ?Vignette
