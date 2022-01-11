@@ -40,13 +40,13 @@ class ArticleCrudController extends AbstractCrudController
 
             $field =   [
                 TextField::new('titre', 'titre de l\'article'),
-               
+                TextField::new('slug', 'slug de larticle de l\'article'),
                 TextEditorField::new('description', 'Description de l\'article'),
                 AssociationField::new('pays')
                     ->setFormTypeOptions([
                        
                     ]),
-                   
+
 
             ];
 

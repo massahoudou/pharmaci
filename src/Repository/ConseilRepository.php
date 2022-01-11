@@ -33,13 +33,21 @@ class ConseilRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('co')
             ->join('co.pays','p')
-            ->andWhere('co.titre = :titre')
+            ->andWhere('co.slug = :titre')
             ->andWhere('p.nom = :pa')
             ->setParameter('pa', $pays)
             ->setParameter('titre',$titre)
             ->getQuery()
-            ->getOneOrNullResult() 
+            ->getOneOrNullResult()
         ;
+    }
+    public function findRecherche($value)
+    {
+      return $this->createQueryBuilder('co')
+          ->andWhere('co.titre LIKE :value')
+            ->setParameter('value','%'.$value.'%')
+          ->getQuery()
+          ->getResult();
     }
 
     // /**

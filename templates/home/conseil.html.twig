@@ -1,0 +1,39 @@
+<section class="container pt-2 pb-3">
+  {% if conseils is defined and conseils != null %}
+    <h2 class="text-center mb-3 ">Conseils
+    </h2>
+
+    <div class="swiper art">
+      <div class="swiper-wrapper  ">
+      {% for conseil in conseils %}
+        <div class="swiper-slide">
+          <div class="card shadow-sm" style="width: 24rem;">
+            <img src="{{ asset('images/conseils/'~ conseil.image)}}" class="card-img-top" alt="...">
+            <div class="card-body">
+              <div class="metadata">
+
+              <!--  <small class="rounded-pill small">{{ conseil.pays }}</small>
+                  <small class="rounded-pill small">{{ conseil.misajour | date('d-m-Y') }}</small>-->
+              </div>
+              <h4 class="card-title text-capitalize">{{ conseil.titre }}</h4>
+              <p class="card-text">
+                {{  conseil.description |striptags  |u.truncate(200) | raw }}</p>
+
+              <a href="{{ path('single.conseil', {titre: conseil.titre | replace({' ': '-'}), pays: conseil.pays} )}}" class=" btn-sante-outline ">
+                <span>
+                  Lire plus
+                  <i class="fas fa-arrow-circle-right"></i>
+                </span>
+              </a>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-pagination"></div>
+    </div>
+  {% endif %}
+
+</section>

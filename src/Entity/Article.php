@@ -7,11 +7,16 @@ use Doctrine\ORM\Mapping as ORM;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 /**
  * @ORM\Entity(repositoryClass=ArticleRepository::class)
  *  @Vich\Uploadable
+ *  @UniqueEntity(
+ *     fields={"titre","slug"},
+ *     message="Existe déja"
+ * )
  */
-class Article 
+class Article
 {
     /**
      * @ORM\Id
@@ -42,7 +47,7 @@ class Article
 
      /**
       *  @Vich\UploadableField(mapping="articles", fileNameProperty="image", size="")
-     * @var File|null 
+     * @var File|null
      */
     private $fichier;
     /**
@@ -51,14 +56,19 @@ class Article
     private $image;
 
 
-    
+
 
     /**
      * @ORM\ManyToOne(targetEntity=Pays::class, inversedBy="articles")
      */
     private $pays;
 
-    
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $slug;
+
+
     public function __construct()
     {
         $this->creation = new \DateTime();
@@ -157,7 +167,19 @@ class Article
         return $this->fichier;
     }
 
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
 
-   
+    public function setSlug(?string $slug): self
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+
+
 
 }

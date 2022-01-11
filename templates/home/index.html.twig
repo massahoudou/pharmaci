@@ -5,598 +5,169 @@
 
 {% block body %}
 
-	<!-- banner flag  -->
-	<section class="container mt-5 ">
-		<h2 class="mb-4">Naviguer dans un pays
-		</h2>
-		<div class="banner-pays owl-carousel owl-theme ">
-			{% for pays in pays %}
-				<div class="item">
-					<a class="text-decoration-none  text-dark " href="{{path('pays',{pays: pays.nom })}}">
-						<div class="banner-pays-flag">
-							<div class="flag">
-								<img src="{{ vich_uploader_asset(pays, 'fichier' )}}" alt="{{ pays.nom }})">
-							</div>
-							<span>
-								{{pays.nom }}
-							</span>
-						</div>
-					</a>
+  <!-- banner flag -->
+  <section class="container mt-5 ">
+    <h2 class="mb-4">Naviguer dans un pays
+    </h2>
+    <div class="swiper banner-pays" style="">
+      <div class="swiper-wrapper  ">
+      {% for pays in pays %}
+        <div class="swiper-slide ">
+          <a class="text-decoration-none  text-dark " href="{{path('pays',{pays: pays.nom })}}">
+            <div class="banner-pays-flag">
+              <div class="flag">
+                <img src="{{ vich_uploader_asset(pays, 'fichier' )}}" alt="{{ pays.nom }})">
+              </div>
+              <span>
+                {{pays.nom }}
+              </span>
+            </div>
+          </a>
+        </div>
+      {% endfor %}
+    </div>
 
-				</div>
-			{% endfor %}
-		</div>
-	</section>
-	<!-- banner  article  -->
-	{% include "home/article.html.twig" %}
-	{# <!-- banner  article vidéos -->
-							    <section class="container  mt-5 mb-5 ">
-							        <h4 class="">Vidéo de conseils pratiques santé </h4>
-							        <div class="art owl-theme  owl-carousel  ">
-							            <div class="item">
-							                <div class="card shadow-sm" style="width: 25rem;">
-							                    <img src="img/Santé-Numérique-570x380.jpg" class="card-img-top"
-							                        alt="...">
-							                    <div class="card-body">
-							                        <h5 class="card-title">Assurance chomage</h5>
-							                        <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi optio non officia</p>
-							                            <a href="#" class="btn btn-primary ">lire plus </a>
-							                    </div>
-							                </div>
-							            </div>
-							            <div class="item">
-							                <div class="card shadow-sm" style="width: 25rem;">
-							                    <img src="img/Santé-Numérique-570x380.jpg" class="card-img-top"
-							                        alt="...">
-							                    <div class="card-body">
-							                        <h5 class="card-title">Assurance chomage</h5>
-							                        <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi optio non officia</p>
-							                        <a href="#" class="btn btn-primary">lire plus </a>
-							                    </div>
-							                </div>
-							            </div>
-							            <div class="item">
-							                <div class="card shadow-sm" style="width: 25rem;">
-							                    <img src="img/Santé-Numérique-570x380.jpg" class="card-img-top"
-							                        alt="...">
-							                    <div class="card-body">
-							                        <h5 class="card-title">Assurance chomage</h5>
-							                        <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi optio non officia.</p>
-							                            <a href="#" class="btn btn-primary">lire plus </a>
-							                    </div>
-							                </div>
-							            </div>
-							            <div class="item">
-							                <div class="card shadow-sm" style="width: 25rem;">
-							                    <img src="img/Santé-Numérique-570x380.jpg" class="card-img-top"
-							                        alt="...">
-							                    <div class="card-body">
-							                        <h5 class="card-title">Assurance chomage</h5>
-							                        <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi optio non officia.</p>
-							                            <a href="#" class="btn btn-primary">lire plus </a>
-							                    </div>
-							                </div>
-							            </div>
-							            <div class="item">
-							                <div class="card shadow-sm" style="width: 25rem;">
-							                    <img src="img/Santé-Numérique-570x380.jpg" class="card-img-top"
-							                        alt="...">
-							                    <div class="card-body">
-							                        <h5 class="card-title">Assurance chomage</h5>
-							                        <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi optio non officia.</p>
-							                            <a href="#" class="btn btn-primary">lire plus </a>
-							                    </div>
-							                </div>
-							            </div>
-							            <div class="item">
-							                <div class="card shadow-sm" style="width: 25rem;">
-							                    <img src="img/Santé-Numérique-570x380.jpg" class="card-img-top"
-							                        alt="...">
-							                    <div class="card-body">
-							                        <h5 class="card-title">Assurance chomage</h5>
-							                        <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi optio non officia.</p>
-							                            <a href="#" class="btn btn-primary">lire plus </a>
-							                    </div>
-							                </div>
-							            </div>
-							        </div>
-							        <div class="text-center  pt-3 justify-content-center">
-							            <a href="" class="btn rounded-0 btn-dark"> Voir tous les vidéos</a>
-							        </div>
-							    </section> #}
-	<!-- banner pub -->
-		<section class="container mt-5 mb-5 "> <div class="swiper mySwiper">
-			<div class="swiper-wrapper">
-				{% for pub in pub1 %}
-					<div class="swiper-slide">
-						<img src="{{ vich_uploader_asset(pub,'fichier')}}" class="w-100" alt="" data-bs-toggle="modal" data-bs-target="#staticBackdrop{{ pub.titre }}">
-					</div>
-				{% endfor %}
-			</div>
-			<div class="swiper-button-next"></div>
-			<div class="swiper-button-prev"></div>
-			<div class="swiper-pagination"></div>
-		</div>
-		<!-- If we need scrollbar -->
-		<div class="swiper-scrollbar"></div>
-	</div>
-	{% for pubmodal  in pub1 %}
-		<div class="modal fade" id="staticBackdrop{{ pubmodal.titre }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title" id="staticBackdropLabel">{{ pubmodal.titre | capitalize }}</h5>
-						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-					</div>
-					<div class="modal-body">
+      <div class="swiper-pagination"></div>
+    </div>
+  </section>
+  <!-- banner article -->
+  {% include "home/article.html.twig" %}
 
-						<div>
-							<span class="text-muted">Adresse :
-								<span>
-									{{ pubmodal.adresse }}</div>
-								<div>
-									<span class="text-muted ">
-										Telephone :
-										<span>
-											{{ pubmodal.telephone1 ? pubmodal.telephone1 : '' }}
-											/
-											{{ pubmodal.telephone2 ? pubmodal.telephone2 : '' }}
-										</div>
+  {% include 'home/publicite.html.twig' with {
+    'publicite' : pub1
+  } %}
 
-										<div class="card d-flex justify-content-center align-items-center " style="height: 6rem ">
-											<small class="">Localisation
-											</small>
-										</div>
-									</div>
-									<div class="modal-footer">
-										<button type="button" class="btn btn-success" data-bs-dismiss="modal">fermer</button>
+  {% set i = 0 %}
+  {% for key, repertoire in repertoires %}
+    {% set i = i + 1%}
+    {% if repertoire is defined and repertoire | length >= 1 %}
+      <section class="container mt-5 mb-5  ">
+        <small class="Repertroire" style="background: var(--primary);
+								padding: .2rem 1rem;
+								color: white;">
+          <i class=" fas fa-folder "></i>
+          <span>Repertroire</span>
+        </small>
+        <h2 class="mb-4 d-flex justify-content-between  align-items-center">{{ key }}
+          <a href="{{ path('all.repertoire',{categorie: key ,locat: locat })}}" class="btn btn-success">Voir plus
+          </a>
+        </h2>
+        <div class="swiper repertoire" >
+          <div class="swiper-wrapper  ">
+            {% for vignette in repertoire %}
+              <div class="swiper-slide ">
+                <div class="card shadow-sm" style="width: 20rem;">
+                  <img src="{{ vich_uploader_asset(vignette, 'fichier')}}" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <div class="metadata">
+                      <small class="rounded-pill small">{{ vignette.categorie }}</small>
+                    </div>
+                    <h4 class="card-title text-capitalize ">{{ vignette.titre }}
+                    </h4>
+                    <p class="card-text">
+                      {{ vignette.description  |striptags  |u.truncate(100) | raw  }}</p>
+                    <a href="{{ vignette.flip ? vignette.flip : '' }}" target="_blank" data-rel="fh5-light-box-demo" data-href="{{ vignette.flip ? vignette.flip : '' }}" data-width="900" data-height="500" data-title="{{ vignette.titre}}" class=" btn-sante-outline ">
+                      <span>
+                        Lire plus
+                        <i class="fas fa-arrow-circle-right"></i>
+                      </span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-pagination"></div>
+        </div>
 
-									</div>
-								</div>
-							</div>
-						</div>
-					{% endfor %}
-				</section>
+      </section>
+      <!-- publicte -->
+      {% if i == 2 %}
+        {% include 'home/publicite.html.twig' with {
+          'publicite' : pub2
+        } %}
+      {% endif %}
 
+      {% if i == 4 %}
+        {% include 'home/publicite.html.twig' with {
+          'publicite' : pub3
+        } %}
+      {% endif %}
 
-				{% set i =  0 %}
-				{% for key , repertoire in repertoires %}
-					{% set i = i + 1%}
-					{% if repertoire  is defined  and  repertoire|length >= 1   %}
-						<section class="container mt-5 mb-5  ">
-							<small class="Repertroire" style="background: var(--primary);
-																																																															                padding: .2rem 1rem;
-																																																															                color: white;">
-								<i class=" fas fa-folder "></i>
-								<span>Repertroire</span>
-							</small>
-							<h2 class="mb-4 d-flex justify-content-between  align-items-center">{{ key }}
-								<a href="{{ path('all.repertoire',{categorie: key })}}" class="btn btn-success">Voir plus
-								</a>
-							</h2>
-							<div class="vign owl-carousel owl-theme">
-								{% for  vignette in repertoire %}
-									<div class="item">
-										<div class="card shadow-sm" style="width: 20rem;">
-											<img src="{{ vich_uploader_asset(vignette, 'fichier')}}" class="card-img-top" alt="...">
-											<div class="card-body">
-												<div class="metadata">
-													<small class="rounded-pill small">{{ vignette.categorie }}</small>
-												</div>
-												<h4 class="card-title text-capitalize ">{{ vignette.titre }}
-												</h4>
-												<p class="card-text">
-													{{ vignette.description  |striptags  |u.truncate(100) | raw  }}</p>
-												<a href="{{ vignette.flip ? vignette.flip : '' }}" target="_blank" data-rel="fh5-light-box-demo" data-href="{{ vignette.flip ? vignette.flip : '' }}" data-width="900" data-height="500" data-title="{{ vignette.titre}}" class=" btn-sante-outline ">
-													<span>
-														Lire plus
-														<i class="fas fa-arrow-circle-right"></i>
-													</span>
-												</a>
-											</div>
-										</div>
-									</div>
-								{% endfor %}
-							</div>
-						</section>
-						{% if (i%2) != 0  and i == 3  %}
-							<section class="container mt-5 mb-5 ">
-								<div class="swiper mySwiper">
-									<div class="swiper-wrapper">
-										{% for pub in pub2 %}
-											<div class="swiper-slide">
-												<img src="{{ vich_uploader_asset(pub,'fichier')}}" class="w-100" alt=""  data-bs-toggle="modal" data-bs-target="#staticBackdrop{{ pub.titre }}">
-											</div>
-										{% endfor %}
-									</div>
-									<div class="swiper-button-next"></div>
-									<div class="swiper-button-prev"></div>
-									<div class="swiper-pagination"></div>
-								</div>
-								<!-- If we need scrollbar -->
-								<div class="swiper-scrollbar"></div>
-							</div>
-							{% for pubmodal  in pub2 %}
-								<div class="modal fade" id="staticBackdrop{{ pubmodal.titre }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-									<div class="modal-dialog">
-										<div class="modal-content">
-											<div class="modal-header">
-												<h5 class="modal-title" id="staticBackdropLabel">{{ pubmodal.titre | capitalize }}</h5>
-												<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-											</div>
-											<div class="modal-body">
+      {% if i == 6 %}
+        {% include 'home/publicite.html.twig' with {
+          'publicite' : pub4
+        } %}
+      {% endif %}
 
-												<div>
-													<span class="text-muted">Adresse :
-														<span>
-															{{ pubmodal.adresse }}</div>
-														<div>
-															<span class="text-muted ">
-																Telephone :
-																<span>
-																	{{ pubmodal.telephone1 ? pubmodal.telephone1 : '' }}
-																	/
-																	{{ pubmodal.telephone2 ? pubmodal.telephone2 : '' }}
-																</div>
+      {% if i == 8 %}
+        {% include 'home/publicite.html.twig' with {
+          'publicite' : pub5
+        } %}
+      {% endif %}
+      {% if i == 10 %}
+        {% include 'home/publicite.html.twig' with {
+          'publicite' : pub6
+        } %}
+      {% endif %}
+      {% if i == 12 %}
+        {% include 'home/publicite.html.twig' with {
+          'publicite' : pub7
+        } %}
+      {% endif %}
+      {% if i == 14 %}
+        {% include 'home/publicite.html.twig' with {
+          'publicite' : pub8
+        } %}
+      {% endif %}
+      {% if i == 16 %}
+        {% include 'home/publicite.html.twig' with {
+          'publicite' : pub9
+        } %}
+      {% endif %}
+      {% if i == 18 %}
+        {% include 'home/publicite.html.twig' with {
+          'publicite' : pub10
+        } %}
+      {% endif %}
+      {% if i == 20 %}
+        {% include 'home/publicite.html.twig' with {
+          'publicite' : pub11
+        } %}
+      {% endif %}
+      {% if i == 22 %}
+        {% include 'home/publicite.html.twig' with {
+          'publicite' : pub12
+        } %}
+      {% endif %}
 
-																<div class="card d-flex justify-content-center align-items-center " style="height: 6rem ">
-																	<small class="">Localisation
-																	</small>
-																</div>
-															</div>
-															<div class="modal-footer">
-																<button type="button" class="btn btn-success" data-bs-dismiss="modal">fermer</button>
+    {% endif %}
 
-															</div>
-														</div>
-													</div>
-												</div>
-											{% endfor %}
+  {% endfor %}
 
-										</section>
-									{% endif %}
-									{% if (i%2) != 0  and i == 6  %}
-										<section class="container mt-5 mb-5 ">
-											<div class="swiper mySwiper">
-												<div class="swiper-wrapper">
-													{% for pub in pub3 %}
-														<div class="swiper-slide">
-															<img src="{{ vich_uploader_asset(pub,'fichier')}}" class="w-100" alt=""  data-bs-toggle="modal" data-bs-target="#staticBackdrop{{ pub.titre }}">
-														</div>
-													{% endfor %}
-												</div>
-												<div class="swiper-button-next"></div>
-												<div class="swiper-button-prev"></div>
-												<div class="swiper-pagination"></div>
-											</div>
-											<!-- If we need scrollbar -->
-											<div class="swiper-scrollbar"></div>
-										</div>
-										{% for pubmodal  in pub3 %}
-											<div class="modal fade" id="staticBackdrop{{ pubmodal.titre }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-												<div class="modal-dialog">
-													<div class="modal-content">
-														<div class="modal-header">
-															<h5 class="modal-title" id="staticBackdropLabel">{{ pubmodal.titre | capitalize }}</h5>
-															<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-														</div>
-														<div class="modal-body">
+  <!-- banner pub -->
 
-															<div>
-																<span class="text-muted">Adresse :
-																	<span>
-																		{{ pubmodal.adresse }}</div>
-																	<div>
-																		<span class="text-muted ">
-																			Telephone :
-																			<span>
-																				{{ pubmodal.telephone1 ? pubmodal.telephone1 : '' }}
-																				/
-																				{{ pubmodal.telephone2 ? pubmodal.telephone2 : '' }}
-																			</div>
+  {# <section class="container mt-5 mb-5 ">
+<div class="swiper mySwiper">
+<div class="swiper-wrapper">
+{% for pub in pub4 %}
+<div class="swiper-slide">
+<img src="{{ vich_uploader_asset(pub,'fichier')}}" class="w-100" alt=""  data-bs-toggle="modal" data-bs-target="#staticBackdrop{{ pub.titre }}">
+</div>
+{% endfor %}
+</div>
+<div class="swiper-button-next"></div>
+<div class="swiper-button-prev"></div>
+<div class="swiper-pagination"></div>
+</div>
+<!-- If we need scrollbar -->
+<div class="swiper-scrollbar"></div>
+</div>
 
-																			<div class="card d-flex justify-content-center align-items-center " style="height: 6rem ">
-																				<small class="">Localisation
-																				</small>
-																			</div>
-																		</div>
-																		<div class="modal-footer">
-																			<button type="button" class="btn btn-success" data-bs-dismiss="modal">fermer</button>
+</section> #}
 
-																		</div>
-																	</div>
-																</div>
-															</div>
-														{% endfor %}
+  {% include 'home/conseil.html.twig' %}
 
-													</section>
-												{% endif %}
-
-												{% if (i%2) != 0  and i == 12  %}
-													<section class="container mt-5 mb-5 ">
-														<div class="swiper mySwiper">
-															<div class="swiper-wrapper">
-																{% for pub in pub4 %}
-																	<div class="swiper-slide">
-																		<img src="{{ vich_uploader_asset(pub,'fichier')}}" class="w-100" alt=""  data-bs-toggle="modal" data-bs-target="#staticBackdrop{{ pub.titre }}">
-																	</div>
-																{% endfor %}
-															</div>
-															<div class="swiper-button-next"></div>
-															<div class="swiper-button-prev"></div>
-															<div class="swiper-pagination"></div>
-														</div>
-														<!-- If we need scrollbar -->
-														<div class="swiper-scrollbar"></div>
-													</div>
-													{% for pubmodal  in pub4 %}
-														<div class="modal fade" id="staticBackdrop{{ pubmodal.titre }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-															<div class="modal-dialog">
-																<div class="modal-content">
-																	<div class="modal-header">
-																		<h5 class="modal-title" id="staticBackdropLabel">{{ pubmodal.titre | capitalize }}</h5>
-																		<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-																	</div>
-																	<div class="modal-body">
-
-																		<div>
-																			<span class="text-muted">Adresse :
-																				<span>
-																					{{ pubmodal.adresse }}</div>
-																				<div>
-																					<span class="text-muted ">
-																						Telephone :
-																						<span>
-																							{{ pubmodal.telephone1 ? pubmodal.telephone1 : '' }}
-																							/
-																							{{ pubmodal.telephone2 ? pubmodal.telephone2 : '' }}
-																						</div>
-
-																						<div class="card d-flex justify-content-center align-items-center " style="height: 6rem ">
-																							<small class="">Localisation
-																							</small>
-																						</div>
-																					</div>
-																					<div class="modal-footer">
-																						<button type="button" class="btn btn-success" data-bs-dismiss="modal">fermer</button>
-
-																					</div>
-																				</div>
-																			</div>
-																		</div>
-																	{% endfor %}
-
-																</section>
-															{% endif %}
-															{% if (i%2) != 0  and i == 15  %}
-																<section class="container mt-5 mb-5 ">
-																	<div class="swiper mySwiper">
-																		<div class="swiper-wrapper">
-																			{% for pub in pub5 %}
-																				<div class="swiper-slide">
-																					<img src="{{ vich_uploader_asset(pub,'fichier')}}" class="w-100" alt=""  data-bs-toggle="modal" data-bs-target="#staticBackdrop{{ pub.titre }}">
-																				</div>
-																			{% endfor %}
-																		</div>
-																		<div class="swiper-button-next"></div>
-																		<div class="swiper-button-prev"></div>
-																		<div class="swiper-pagination"></div>
-																	</div>
-																	<!-- If we need scrollbar -->
-																	<div class="swiper-scrollbar"></div>
-																</div>
-																{% for pubmodal  in pub5 %}
-																	<div class="modal fade" id="staticBackdrop{{ pubmodal.titre }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-																		<div class="modal-dialog">
-																			<div class="modal-content">
-																				<div class="modal-header">
-																					<h5 class="modal-title" id="staticBackdropLabel">{{ pubmodal.titre | capitalize }}</h5>
-																					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-																				</div>
-																				<div class="modal-body">
-
-																					<div>
-																						<span class="text-muted">Adresse :
-																							<span>
-																								{{ pubmodal.adresse }}</div>
-																							<div>
-																								<span class="text-muted ">
-																									Telephone :
-																									<span>
-																										{{ pubmodal.telephone1 ? pubmodal.telephone1 : '' }}
-																										/
-																										{{ pubmodal.telephone2 ? pubmodal.telephone2 : '' }}
-																									</div>
-
-																									<div class="card d-flex justify-content-center align-items-center " style="height: 6rem ">
-																										<small class="">Localisation
-																										</small>
-																									</div>
-																								</div>
-																								<div class="modal-footer">
-																									<button type="button" class="btn btn-success" data-bs-dismiss="modal">fermer</button>
-
-																								</div>
-																							</div>
-																						</div>
-																					</div>
-																				{% endfor %}
-
-																			</section>
-																		{% endif %}
-																		{% if (i%2) != 0  and i == 18  %}
-																			<section class="container mt-5 mb-5 ">
-																				<div class="swiper mySwiper">
-																					<div class="swiper-wrapper">
-																						{% for pub in pub6 %}
-																							<div class="swiper-slide">
-																								<img src="{{ vich_uploader_asset(pub,'fichier')}}" class="w-100" alt=""  data-bs-toggle="modal" data-bs-target="#staticBackdrop{{ pub.titre }}">
-																							</div>
-																						{% endfor %}
-																					</div>
-																					<div class="swiper-button-next"></div>
-																					<div class="swiper-button-prev"></div>
-																					<div class="swiper-pagination"></div>
-																				</div>
-																				<!-- If we need scrollbar -->
-																				<div class="swiper-scrollbar"></div>
-																			</div>
-																			{% for pubmodal  in pub6 %}
-																				<div class="modal fade" id="staticBackdrop{{ pubmodal.titre }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-																					<div class="modal-dialog">
-																						<div class="modal-content">
-																							<div class="modal-header">
-																								<h5 class="modal-title" id="staticBackdropLabel">{{ pubmodal.titre | capitalize }}</h5>
-																								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-																							</div>
-																							<div class="modal-body">
-
-																								<div>
-																									<span class="text-muted">Adresse :
-																										<span>
-																											{{ pubmodal.adresse }}</div>
-																										<div>
-																											<span class="text-muted ">
-																												Telephone :
-																												<span>
-																													{{ pubmodal.telephone1 ? pubmodal.telephone1 : '' }}
-																													/
-																													{{ pubmodal.telephone2 ? pubmodal.telephone2 : '' }}
-																												</div>
-
-																												<div class="card d-flex justify-content-center align-items-center " style="height: 6rem ">
-																													<small class="">Localisation
-																													</small>
-																												</div>
-																											</div>
-																											<div class="modal-footer">
-																												<button type="button" class="btn btn-success" data-bs-dismiss="modal">fermer</button>
-
-																											</div>
-																										</div>
-																									</div>
-																								</div>
-																							{% endfor %}
-
-																						</section>
-																					{% endif %}
-																					{% if (i%2) != 0  and i == 21  %}
-																						<section class="container mt-5 mb-5 ">
-																							<div class="swiper mySwiper">
-																								<div class="swiper-wrapper">
-																									{% for pub in pub7 %}
-																										<div class="swiper-slide">
-																											<img src="{{ vich_uploader_asset(pub,'fichier')}}" class="w-100" alt=""  data-bs-toggle="modal" data-bs-target="#staticBackdrop{{ pub.titre }}">
-																										</div>
-																									{% endfor %}
-																								</div>
-																								<div class="swiper-button-next"></div>
-																								<div class="swiper-button-prev"></div>
-																								<div class="swiper-pagination"></div>
-																							</div>
-																							<!-- If we need scrollbar -->
-																							<div class="swiper-scrollbar"></div>
-																						</div>
-																						{% for pubmodal  in pub7  %}
-																							<div class="modal fade" id="staticBackdrop{{ pubmodal.titre }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-																								<div class="modal-dialog">
-																									<div class="modal-content">
-																										<div class="modal-header">
-																											<h5 class="modal-title" id="staticBackdropLabel">{{ pubmodal.titre | capitalize }}</h5>
-																											<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-																										</div>
-																										<div class="modal-body">
-
-																											<div>
-																												<span class="text-muted">Adresse :
-																													<span>
-																														{{ pubmodal.adresse }}</div>
-																													<div>
-																														<span class="text-muted ">
-																															Telephone :
-																															<span>
-																																{{ pubmodal.telephone1 ? pubmodal.telephone1 : '' }}
-																																/
-																																{{ pubmodal.telephone2 ? pubmodal.telephone2 : '' }}
-																															</div>
-
-																															<div class="card d-flex justify-content-center align-items-center " style="height: 6rem ">
-																																<small class="">Localisation
-																																</small>
-																															</div>
-																														</div>
-																														<div class="modal-footer">
-																															<button type="button" class="btn btn-success" data-bs-dismiss="modal">fermer</button>
-
-																														</div>
-																													</div>
-																												</div>
-																											</div>
-																										{% endfor %}
-
-																									</section>
-																								{% endif %}
-
-																							{% endif %}
-
-																						{% endfor %}
-
-
-																						<!-- banner pub -->
-
-																						{# <section class="container mt-5 mb-5 ">
-																							<div class="swiper mySwiper">
-																								<div class="swiper-wrapper">
-																									{% for pub in pub4 %}
-																										<div class="swiper-slide">
-																											<img src="{{ vich_uploader_asset(pub,'fichier')}}" class="w-100" alt=""  data-bs-toggle="modal" data-bs-target="#staticBackdrop{{ pub.titre }}">
-																										</div>
-																									{% endfor %}
-																								</div>
-																								<div class="swiper-button-next"></div>
-																								<div class="swiper-button-prev"></div>
-																								<div class="swiper-pagination"></div>
-																							</div>
-																							<!-- If we need scrollbar -->
-																							<div class="swiper-scrollbar"></div>
-																						</div>
-
-																					</section> #}
-
-
-																					<section class="container pt-2 pb-3">
-																						{% if conseils is defined and  conseils != null  %}
-																							<h2 class="text-center mb-3 ">Conseils
-																							</h2>
-
-																							<div class=" art  owl-carousel owl-theme  ">
-																								{% for conseil in conseils %}
-																									<div class="item">
-																										<div class="card shadow-sm" style="width: 24rem;">
-																											<img src="{{ asset('images/conseils/'~ conseil.image)}}" class="card-img-top" alt="...">
-																											<div class="card-body">
-
-																												<div class="metadata">
-
-																													<small class="rounded-pill small">{{ conseil.pays }}</small>
-																												</div>
-																												<h4 class="card-title text-capitalize">{{ conseil.titre }}</h4>
-																												<p class="card-text">
-																													{{  conseil.description |striptags  |u.truncate(200) | raw }}</p>
-
-																												<a href="{{ path('single.conseil', {titre: conseil.titre | replace({' ': '-'}), pays: conseil.pays} )}}" class=" btn-sante-outline ">
-																													<span>
-																														Lire plus
-																														<i class="fas fa-arrow-circle-right"></i>
-																													</span>
-																												</a>
-																											</div>
-																										</div>
-																									</div>
-																								{% endfor %}
-																							</div>
-																						{% endif %}
-
-																					</section>
-
-																				{% endblock %}
+{% endblock %}

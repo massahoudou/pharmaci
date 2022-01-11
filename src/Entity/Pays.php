@@ -8,10 +8,15 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=PaysRepository::class)
  *  @Vich\Uploadable
+ *  @UniqueEntity(
+ *     fields={"nom"},
+ *     message="Existe déja"
+ * )
  */
 class Pays
 {
@@ -29,7 +34,7 @@ class Pays
 
     /**
      *  @Vich\UploadableField(mapping="pays", fileNameProperty="image", size="")
-     * @var File|null 
+     * @var File|null
      */
     private $fichier;
     /**
@@ -88,7 +93,7 @@ class Pays
         return $this;
     }
 
- 
+
     public function getImage(): ?string
     {
         return $this->image;

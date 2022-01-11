@@ -5,9 +5,13 @@ namespace App\Entity;
 use App\Repository\UsersRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
-
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 /**
  * @ORM\Entity(repositoryClass=UsersRepository::class)
+ *  @UniqueEntity(
+ *     fields={"identifiant"},
+ *     message="Existe déja"
+ * )
  */
 class Users implements UserInterface
 {
@@ -109,7 +113,7 @@ class Users implements UserInterface
     }
     public function getUserIdentifier()
     {
-        return $this->identifiant;  
+        return $this->identifiant;
     }
     public function getUsername()
     {
@@ -129,6 +133,6 @@ class Users implements UserInterface
     }
     public function eraseCredentials()
     {
-        
+
     }
 }

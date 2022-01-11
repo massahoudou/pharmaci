@@ -21,7 +21,7 @@ class PubCrudController extends AbstractCrudController
         return Pub::class;
     }
 
-    
+
     public function configureFields(string $pageName): iterable
     {
         $fichier =  TextareaField::new('fichier' , 'Image de la pub ')
@@ -44,6 +44,12 @@ class PubCrudController extends AbstractCrudController
                     'section 4' => 4,
                     'section 5' => 5,
                     'section 6' => 6,
+                    'section 7' => 7,
+                    'section 8' => 8,
+                    'section 9' => 9,
+                    'section 10' => 10,
+                    'section 11' => 11,
+                    'section 12' => 12,
                 ]),
                 TextField::new('adresse','Adresse de l\'annonceur '),
                 TextField::new('site','site de l\'annonceur'),
@@ -51,10 +57,10 @@ class PubCrudController extends AbstractCrudController
                 IntegerField::new('telephone2','telephone 2 '),
                 AssociationField::new('pays')
                     ->setFormTypeOptions([
-                       
+
                     ]),
-              
-                   
+
+
 
             ];
 
@@ -67,11 +73,11 @@ class PubCrudController extends AbstractCrudController
             {
                 $field[] = $localisation ;
                 $field[] =  $fichier ;
-                
+
              }
 
             return $field ;
-      
+
     }
-    
+
 }

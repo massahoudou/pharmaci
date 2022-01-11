@@ -6,10 +6,15 @@ use App\Repository\MaladienutritionRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
- * @ORM\Entity(repositoryClass=MaladieRepository::class)
+ * @ORM\Entity(repositoryClass=MaladienutritionRepository::class)
  * @Vich\Uploadable
+ *  @UniqueEntity(
+ *     fields={"titre","slug"},
+ *     message="Existe déja"
+ * )
  */
 class Maladienutrition
 {
@@ -42,13 +47,18 @@ class Maladienutrition
 
     /**
      *  @Vich\UploadableField(mapping="articles", fileNameProperty="image", size="")
-     * @var File|null 
+     * @var File|null
      */
     private $fichier;
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $image;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $slug;
 
 
 
@@ -134,6 +144,18 @@ class Maladienutrition
     public function getFichier(): ?File
     {
         return $this->fichier;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(?string $slug): self
+    {
+        $this->slug = $slug;
+
+        return $this;
     }
 
 }

@@ -22,9 +22,10 @@ class MaladienutritionRepository extends ServiceEntityRepository
      /**
       * @return Maladienutrition[] Returns an array of Maladienutrition objects
       */
-    
+
     public function findByMaladies()
     {
+
         return $this->createQueryBuilder('m')
             ->andWhere('m.type = 0 ')
             ->orderBy('m.id', 'DESC')
@@ -36,7 +37,7 @@ class MaladienutritionRepository extends ServiceEntityRepository
       /**
       * @return Maladienutrition[] Returns an array of Maladienutrition objects
       */
-    
+
       public function findByNutritions()
       {
           return $this->createQueryBuilder('m')
@@ -58,7 +59,7 @@ class MaladienutritionRepository extends ServiceEntityRepository
               ->setParameter('pa', $pays)
               ->setParameter('titre',$titre)
               ->getQuery()
-              ->getOneOrNullResult() 
+              ->getOneOrNullResult()
           ;
       }
 
@@ -73,10 +74,18 @@ class MaladienutritionRepository extends ServiceEntityRepository
             ->setParameter('pa', $pays)
             ->setParameter('titre',$titre)
             ->getQuery()
-            ->getOneOrNullResult() 
+            ->getOneOrNullResult()
         ;
     }
-    
+    public function findRecherche($value)
+    {
+      return $this->createQueryBuilder('m')
+          ->andWhere('m.titre LIKE :value')
+            ->setParameter('value','%'.$value.'%')
+          ->getQuery()
+        ->getResult();
+    }
+
 
     /*
     public function findOneBySomeField($value): ?Maladienutrition

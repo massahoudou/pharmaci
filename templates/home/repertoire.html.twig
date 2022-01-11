@@ -2,29 +2,43 @@
 
 {% block body %}
 
-<h2 class="text-center mt-5"> <small class="Repertroire text-center" style="background: var(--primary);
+  <h2 class="text-center mt-5">
+    <small class="Repertroire text-center" style="background: var(--primary);
                 padding: .2rem 1rem;
-                color: white;"> <i class=" fas fa-folder "></i> <span>Repertroire</span></small >  {{ categorie }} </h2>
+                color: white;">
+      <i class=" fas fa-folder "></i>
+      <span>Repertroire</span></small >
+    {{ categorie }}
+  </h2>
 
-        {% if vignettes is defined and  vignettes != null %}
-          <section class="container mt-5 mb-5  ">
-                <div class="d-flex justify-content-center flex-wrap  ">
-                        
-                    {% for  vignette in vignettes  %}
-                                
-                    <div class="card shadow-sm m-2 " style="width: 20rem;">
-                            <img src="{{ vich_uploader_asset(vignette, 'fichier')}}" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h4 class="card-title text-capitalize ">{{ vignette.titre }} </h4>
-                                <p class="card-text"> {{ vignette.description  |striptags  |u.truncate(100) | raw  }}</p>
-                                <a href="{{ vignette.flip  ? vignette.flip : ''  }}" target="_blank" data-rel="fh5-light-box-demo" data-href="{{ vignette.flip  ? vignette.flip : ''  }}" data-width="900" data-height="500" data-title="{{ vignette.titre}}"  class=" btn-sante-outline ">
-                                        <span> Lire plus <i class="fas fa-arrow-circle-right"></i></span>
-                                    </a>
-                            </div>
-                        </div>
-                    
-                    {% endfor %}
-                </div>
-            </section>
-            {% endif %}
+  {% if vignettes is defined and vignettes != null %}
+    <section class="container mt-5 mb-5  ">
+      <div class="d-flex justify-content-center flex-wrap  ">
+
+        {% for vignette in vignettes %}
+
+          <div class="card shadow-sm m-2 " style="width: 20rem;">
+            <img src="{{ vich_uploader_asset(vignette, 'fichier')}}" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h4 class="card-title text-capitalize ">{{ vignette.titre }}
+              </h4>
+              <p class="card-text">
+                {{ vignette.description  |striptags  |u.truncate(100) | raw  }}</p>
+              <a href="{{ vignette.flip  ? vignette.flip : ''  }}" target="_blank" data-rel="fh5-light-box-demo" data-href="{{ vignette.flip  ? vignette.flip : ''  }}" data-width="900" data-height="500" data-title="{{ vignette.titre}}" class=" btn-sante-outline ">
+                <span>
+                  Lire plus
+                  <i class="fas fa-arrow-circle-right"></i>
+                </span>
+              </a>
+            </div>
+          </div>
+
+        {% endfor %}
+      </div>
+    </section>
+
+    {% include 'home/publicite.html.twig' with {
+      'publicite' : pub4
+    } %}
+  {% endif %}
 {% endblock %}

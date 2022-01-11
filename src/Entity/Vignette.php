@@ -6,9 +6,14 @@ use App\Repository\VignetteRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 /**
  * @ORM\Entity(repositoryClass=VignetteRepository::class)
  * @vich\Uploadable
+ *  @UniqueEntity(
+ *     fields={"titre"},
+ *     message="Existe déja"
+ * )
  */
 class Vignette
 {
@@ -36,7 +41,7 @@ class Vignette
 
     /**
      *  @Vich\UploadableField(mapping="vignettes", fileNameProperty="image", size="")
-     * @var File|null 
+     * @var File|null
      */
     private $fichier;
     /**
@@ -64,7 +69,7 @@ class Vignette
      * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="vignettes")
      */
     private $categorie;
-    
+
     public function __construct()
     {
         $this->creation = new \DateTime();

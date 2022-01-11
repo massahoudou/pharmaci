@@ -1,0 +1,57 @@
+<section class="container mt-5 mb-5 ">
+  <div class="swiper mySwiper">
+    <div class="swiper-wrapper">
+      {% for pub in publicite %}
+        <div class="swiper-slide">
+          <img src="{{ vich_uploader_asset(pub,'fichier')}}" class="w-100" alt="" data-bs-toggle="modal" data-bs-target="#staticBackdrop{{ pub.titre }}">
+        </div>
+      {% endfor %}
+    </div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+  </div>
+  <!-- If we need scrollbar -->
+  <div class="swiper-scrollbar"></div>
+
+{% for pubmodal in publicite %}
+  <div class="modal   fade" id="staticBackdrop{{ pubmodal.titre }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">{{ pubmodal.titre | capitalize }}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div>
+          <i class=" text-success  fas fa-map-marker  "></i>
+            <span class="text-muted ">Adresse :
+            </span>
+            {{ pubmodal.adresse | capitalize }}
+          </div>
+          <div>
+          <i class=" text-success fab fa-internet-explorer"></i>
+            <span class="text-muted  ">Site web  :
+            </span>
+          <a href="{{ pubmodal.site  }}" target="_blank"> {{ pubmodal.site |capitalize }}</a>
+          </div>
+          <div>
+          <i class=" text-success fas fa-phone-alt"></i>
+            <span class="text-muted  ">
+              Téléphone :
+            </span>
+            {{ pubmodal.telephone1 ? pubmodal.telephone1 : '' }}
+
+            {{ pubmodal.telephone2 ? pubmodal.telephone2 : '' }}
+          </div>
+          <div class="card d-flex justify-content-center align-items-center  " style="margin-top: 1rem ">
+          <iframe src="{{pubmodal.localisation}}" width="700" height="350" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success" data-bs-dismiss="modal">fermer</button>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endfor %}
+</section>

@@ -6,10 +6,15 @@ use App\Repository\ConseilRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=ConseilRepository::class)
  * @Vich\Uploadable
+ *  @UniqueEntity(
+ *     fields={"titre","slug"},
+ *     message="Existe déja"
+ * )
  */
 class Conseil
 {
@@ -21,7 +26,7 @@ class Conseil
     private $id;
     /**
      *  @Vich\UploadableField(mapping="conseils", fileNameProperty="image", size="")
-     * @var File|null 
+     * @var File|null
      */
     private $fichier;
     /**
@@ -33,7 +38,7 @@ class Conseil
      * @ORM\ManyToOne(targetEntity=Pays::class, inversedBy="Conseils")
      */
     private $pays;
-    
+
     /**
      * @ORM\Column(type="datetime", nullable=true)
      */
@@ -48,6 +53,11 @@ class Conseil
      * @ORM\Column(type="text")
      */
     private $description;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $slug;
 
     public function getId(): ?int
     {
@@ -123,6 +133,18 @@ class Conseil
     public function setDescription(string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(?string $slug): self
+    {
+        $this->slug = $slug;
 
         return $this;
     }

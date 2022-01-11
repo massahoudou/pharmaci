@@ -1,0 +1,70 @@
+<footer class="pt-5 footer">
+  <div class="container">
+    <div class=" d-flex  flex-wrap justify-content-center aling-items-center flex-wrap  ">
+      <div class="col-md-4">
+        <img src="{{asset('logo/fliplogo2.png')}}" alt="" width="" height="100" class="">
+        <p class="footer-text">
+          Portail de l'internet Africainet annuaire pages jaunes des entreprises
+          <span>
+            Ce site est 100% "made in Africa " et vous propose ses nombreuxx services en ligne
+          </span>
+        </p>
+        <div class="d-flex justify-content-start   text-success ">
+            <span class="px-3">
+              <i class="fab fa-facebook fa-2x "></i>
+            </span>
+            <span class=" px-3">
+              <i class="fab fa-twitter fa-2x "></i>
+            </span>
+
+            <span class="px-3">
+              <i class="fab fa-linkedin-in fa-2x  "></i>
+            </span>
+
+        </div>
+      </div>
+      <div class="col-md">
+        <h3 class="footer-titre text-uppercase">Annuaire D'afrique
+        </h3>
+        <div class="cover-flag d-flex flex-row justify-content-start ">
+          {% for pays in pays %}
+            <div class="flag2">
+              <a href="{{ path('pays',{pays: pays.nom }) }}" class="dropdown-item" href="#">
+                <img src="{{ vich_uploader_asset(pays, 'fichier' )}}" alt="{{ pays.nom }}">
+              </a>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+      <div class="col-md">
+        <h3 class="footer-titre text-uppercase">info & liens
+        </h3>
+        <ul class="footer-list ">
+          <li>
+            <a href="">Qui sommes nous ?</a>
+          </li>
+          <li>FAQ</li>
+          <li>Mentions légales</li>
+          <li>Politique de confidentialité</li>
+          <li>Presse</li>
+          <li>Liens partenaires
+          </li>
+          <li>Contact</li>
+        </ul>
+        <h3 class="footer-titre text-uppercase">Nouveautés</h3>
+        <div>
+          <ul class="footer-list">
+            <li>
+              Nouvelles société</li>
+            <li>Derniers commentaire</li>
+            <li>Blog GoAfirca Online</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="banner-footer-link  d-flex text-white  flex-row justify-content-center flex-wrap " style="font-size: 15px ;">
+  &#169 2021 YenduGroup | by @massfx
+  </div>
+</footer>

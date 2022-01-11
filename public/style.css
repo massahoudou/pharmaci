@@ -30,11 +30,11 @@ body {
   background-color: var(--primary) !important;
 }
 .dropdown-menu li a {
-  color: white !important; 
+  color: white !important;
 }
-.dropdown-menu li:hover 
+.dropdown-menu li:hover
 {
-  background-color: white !important; 
+  background-color: white !important;
 }
 .dropdown-menu li:hover a {
   color: black !important;
@@ -44,17 +44,43 @@ body {
   max-height: 25rem !important;
   object-fit: cover !important;
 } */
+.loader-interface{
+  height: 100vh;
+  position:fixed;
+  display: block;
+  background: white;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1021;
+}
+.loader-interface img {
+height:80px;
+filter: contrast(0);
+animation:  1s ease-in-out infinite  ani;
+}
+@keyframes ani {
+  0%{
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.2;
+    transform: scale(1.2);
+  }
+  100%{
+    opacity: 1;
+    transform: scale(1);
+  }
 
+}
 .swiper {
   width: 100%;
   height: 100%;
 }
 
 .swiper-slide {
-  text-align: center;
-  font-size: 18px;
-  background: #fff;
-
   /* Center slide text vertically */
   display: -webkit-box;
   display: -ms-flexbox;
@@ -68,6 +94,7 @@ body {
   -ms-flex-align: center;
   -webkit-align-items: center;
   align-items: center;
+  margin-bottom: 20px
 }
 
 .swiper-slide img {
@@ -210,7 +237,7 @@ footer {
 
 }
 .banner-footer-link span{
-  padding: 0 1rem; 
+  padding: 0 1rem;
 }
 .assurance-banner .cover {
   border: 2px solid rgb(39, 39, 39);
@@ -287,13 +314,13 @@ align-items: center;
   .article {
     width: 100% !important;
   }
-  
+
 }
 @media screen and  (max-width: 900px) {
   .article-vignette{
     width: 45% !important
   }
-  
+
 } */
 
 @media screen and  (max-width: 500px) {

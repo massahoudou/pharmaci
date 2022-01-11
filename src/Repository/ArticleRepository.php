@@ -34,7 +34,7 @@ class ArticleRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('a')
             ->orderBy('a.id', 'DESC')
-            ->setMaxResults(10)
+            ->setMaxResults(50)
             ->getQuery()
             ->getResult();
     }
@@ -53,8 +53,17 @@ class ArticleRepository extends ServiceEntityRepository
             ->setParameter('pa', $pays)
             ->setParameter('titre',$titre)
             ->getQuery()
-            ->getOneOrNullResult() 
+            ->getOneOrNullResult()
         ;
+    }
+    public function findRecherche($value)
+    {
+      return $this->createQueryBuilder('a')
+
+          ->andWhere('a.titre LIKE :value ')
+            ->setParameter('value','%'.$value.'%')
+          ->getQuery()
+          ->getResult();
     }
 
 

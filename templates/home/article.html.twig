@@ -1,37 +1,40 @@
-{% if articles is defined and  articles != null %}
-<section class="container   mt-5 mb-5 ">
-        <h2 class="mb-4 d-flex justify-content-between  align-items-center">Articles récents
-            <a  href="{{ path('all.articles')}}" class="btn btn-success">Voir plus </a>
-        </h2>
-        <div class=" art  owl-carousel owl-theme  ">
+{% if articles is defined and articles != null %}
+  <section class="container   mt-5 mb-5 ">
+    <h2 class="mb-4 d-flex justify-content-between  align-items-center">Articles récents
+      <a href="{{ path('all.articles')}}" class="btn btn-success">Voir plus
+      </a>
+    </h2>
+    <div class="swiper art">
+      <div class="swiper-wrapper  ">
         {% for article in articles %}
-            <div class="item">
-                <div class="card shadow-sm" style="width: 25rem;">
-                    <img src="{{vich_uploader_asset(article, 'fichier')}}" class="card-img-top"
-                        alt="...">
-                    <div class="card-body">
-                       
-                        <div class="metadata">
-                            
-                            <small class="rounded-pill small">{{ article.pays }}</small>
-                            <small class="rounded-pill small">{{ article.misajour |  date('dd-mm-yy')}}</small>
-                        </div>
-                         <h4 class="card-title text-capitalize">{{ article.titre }}</h4>
-                        <p class="card-text">
-                         {{  article.description |striptags  |u.truncate(90) | raw }}</p>
-                            
-                            <a href="{{ path('single', {titre: article.titre | replace({' ': '-'}), pays: article.pays} )}}" class=" btn-sante-outline ">
-                                <span> Lire plus <i class="fas fa-arrow-circle-right"></i></span>
-                            </a>
-                    </div>
+          <div class="swiper-slide ">
+            <div class="card shadow-sm" style="width: 25rem;">
+              <img src="{{vich_uploader_asset(article, 'fichier')}}" class="card-img-top" alt="...">
+              <div class="card-body">
+
+                <div class="metadata">
+
+                  <!--<small class="rounded-pill small">{{ article.pays }}</small>
+                  <small class="rounded-pill small">{{ article.misajour |  date('d-m-Y')}}</small>-->
                 </div>
+                <h4 class="card-title text-capitalize">{{ article.titre }}</h4>
+                <p class="card-text">
+                  {{  article.description |striptags  |u.truncate(90) | raw }}</p>
+
+                <a href="{{ path('single', {slug: article.slug , pays: article.pays} )}}" class=" btn-sante-outline ">
+                  <span>
+                    Lire plus
+                    <i class="fas fa-arrow-circle-right"></i>
+                  </span>
+                </a>
+              </div>
             </div>
+          </div>
         {% endfor %}
-            
-        </div>
-     
-    </section>
+      </div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-pagination"></div>
+    </div>
+  </section>
 {% endif %}
-
-
-

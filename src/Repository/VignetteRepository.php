@@ -36,7 +36,7 @@ class VignetteRepository extends ServiceEntityRepository
      /**
     * @return Vignette[] Returns an array of Vignette objects
     */
-    
+
     public function findByCategories($value)
     {
         return $this->createQueryBuilder('v')
@@ -58,10 +58,19 @@ public function findPaysvignette( $pays, $titre )
         ->setParameter('pa', $pays)
         ->setParameter('titre',$titre)
         ->getQuery()
-        ->getOneOrNullResult() 
+        ->getOneOrNullResult()
     ;
 }
-    
+public function findRecherche($value)
+{
+  return $this->createQueryBuilder('v')
+
+      ->andWhere('v.titre LIKE :value')
+      ->setParameter('value','%'.$value.'%')
+      ->getQuery()
+      ->getResult();
+}
+
 
     /*
     public function findOneBySomeField($value): ?Vignette

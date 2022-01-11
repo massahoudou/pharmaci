@@ -20,7 +20,7 @@ class ConseilCrudController extends AbstractCrudController
         return Conseil::class;
     }
 
-    
+
     public function configureFields(string $pageName): iterable
     {
         $fichier =  TextareaField::new('fichier' , 'Image')
@@ -32,10 +32,11 @@ class ConseilCrudController extends AbstractCrudController
 
             $field =   [
                 TextField::new('titre','titre conseil'),
+                TextField::new('slug','slug du conseil'),
                 TextEditorField::new('description','description du conseil'),
                 AssociationField::new('pays')
                     ->setFormTypeOptions([
-                       
+
                     ])
                     ];
 
@@ -50,9 +51,9 @@ class ConseilCrudController extends AbstractCrudController
             }
 
            return $field ;
-        
-          
-        
+
+
+
     }
-    
+
 }

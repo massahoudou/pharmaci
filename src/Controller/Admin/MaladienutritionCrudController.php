@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Maladienutrition;
+use App\Repository\maladienutritionRepository;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
@@ -21,7 +22,7 @@ class MaladienutritionCrudController extends AbstractCrudController
         return Maladienutrition::class;
     }
 
-    
+
     public function configureFields(string $pageName): iterable
     {
         $fichier =  TextareaField::new('fichier' , 'Image de l\'article')
@@ -32,8 +33,8 @@ class MaladienutritionCrudController extends AbstractCrudController
                 ->setFormType(VichImageType::class);
 
             $field =   [
-                TextField::new('titre', 'titre de l\'articles '),
-               
+                TextField::new('titre', 'titre de maladies ou nutrition '),
+                TextField::new('slug', 'slug  de la maladies ou nutrition '),
                 TextEditorField::new('description', 'Description de l\'article'),
                 ChoiceField::new('type', 'Type  ')->setChoices(fn () => [
                     'maladie' => 0,
@@ -55,5 +56,5 @@ class MaladienutritionCrudController extends AbstractCrudController
             return $field ;
 
     }
-    
+
 }
